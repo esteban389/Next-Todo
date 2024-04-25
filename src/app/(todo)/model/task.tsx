@@ -7,12 +7,7 @@ import {
   integer,
 } from "drizzle-orm/pg-core";
 import { category } from "../../(user)/model/category";
-export const statusEnum = pgEnum("statusEnum", [
-  "pending",
-  "completed",
-  "in-progress",
-  "canceled",
-]);
+export const statusEnum = pgEnum("statusEnum", ["pending", "completed"]);
 export const task = pgTable("task", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),

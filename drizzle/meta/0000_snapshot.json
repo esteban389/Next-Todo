@@ -1,5 +1,5 @@
 {
-  "id": "1ddaf80d-7547-4e69-93ca-cdb80dee5ca1",
+  "id": "0879d07d-3f4c-4f98-818a-3ab0a1a2a8fc",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -206,9 +206,7 @@
       "name": "statusEnum",
       "values": {
         "pending": "pending",
-        "completed": "completed",
-        "in-progress": "in-progress",
-        "canceled": "canceled"
+        "completed": "completed"
       }
     }
   },

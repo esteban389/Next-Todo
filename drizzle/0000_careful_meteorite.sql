@@ -1,5 +1,5 @@
 DO $$ BEGIN
- CREATE TYPE "statusEnum" AS ENUM('pending', 'completed', 'in-progress', 'canceled');
+ CREATE TYPE "statusEnum" AS ENUM('pending', 'completed');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
