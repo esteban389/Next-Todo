@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LoginForm from "@/app/(user)/login/LoginForm";
+import LoginForm from "@/app/(user)/login/components/LoginForm";
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default async function LoginCard() {
+export default async function LoginCard(): Promise<React.ReactElement>{
   return (
     <Card className="mx-auto max-w-sm shadow-md">
       <CardHeader>

@@ -13,17 +13,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-interface SidebarProps {
-  className?: string;
-}
 const hiddenClasses =
   "w-0 text-background opacity-0 transition-all duration-300 ";
-export default function Sidebar({ className }: SidebarProps) {
+export default function Sidebar() {
   const [isOpen, setSidebar] = useState(false);
   const toggle = () => setSidebar(!isOpen);
   const [status, setStatus] = useState(false);
   const path = usePathname();
-  console.log(path);
   const handleToggle = () => {
     setStatus(true);
     toggle();
@@ -32,9 +28,8 @@ export default function Sidebar({ className }: SidebarProps) {
   return (
     <nav
       className={cn(
-        `transition-all duration-300 fixed hidden h-screen border-r w-fit p-4 md:flex md:flex-col md:justify-between gap-4`,
-        status && "duration-500",
-        className
+        `transition-all duration-300 sticky hidden h-screen border-r w-fit p-4 md:flex md:flex-col md:justify-between gap-4`,
+        status && "duration-500"
       )}
     >
       <ArrowLeft
@@ -46,12 +41,13 @@ export default function Sidebar({ className }: SidebarProps) {
       />
       <div
         role="avatar-container"
-        className="w-full flex justify-center items-center"
+        className="w-full flex flex-col gap-1 justify-center items-center"
       >
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
+        <p className="font-semibold text-sm">@shadcn</p>
       </div>
       <Separator />
       <TooltipProvider delayDuration={0}>
@@ -128,7 +124,7 @@ export default function Sidebar({ className }: SidebarProps) {
             className={cn(
               "text-start",
               !isOpen && hiddenClasses,
-              isOpen && "inline-block left-12 text-base duration-200 w-[120px] "
+              isOpen && "inline-block left-12 text-base duration-200 w-[60px] "
             )}
           >
             Logout

@@ -13,7 +13,7 @@ async function login(prevState: any, formData: any) {
     }, 3000);
   });
 }
-export default function LoginForm() {
+export default function LoginForm(): React.ReactElement{
   const [state, formAction] = useFormState(login, { email: "", password: "" });
   return (
     <form className="grid gap-4">

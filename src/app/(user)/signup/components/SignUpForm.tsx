@@ -10,8 +10,9 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import React from "react";
 
-export default function SignUpForm() {
+export default function SignUpForm(): React.ReactElement {
   return (
     <Card className="mx-auto max-w-sm shadow-md">
       <CardHeader>
