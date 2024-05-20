@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
-
+//Zu2ki2b2TW2blV0l
 export default function Home(): React.ReactElement {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
