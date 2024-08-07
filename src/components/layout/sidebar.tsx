@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ArrowLeft, ListTodo, LogOut, User } from "lucide-react";
@@ -13,24 +13,46 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-const hiddenClasses =
-  "w-0 text-background opacity-0 transition-all duration-300 ";
+import { motion } from "framer-motion";
+const itemVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const listVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+const logoutVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const profileVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function Sidebar() {
   const [isOpen, setSidebar] = useState(false);
-  const toggle = () => setSidebar(!isOpen);
-  const [status, setStatus] = useState(false);
   const path = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
   const handleToggle = () => {
-    setStatus(true);
-    toggle();
-    setTimeout(() => setStatus(false), 500);
+    setSidebar(!isOpen);
   };
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   return (
-    <nav
-      className={cn(
-        `transition-all duration-300 sticky hidden h-screen border-r w-fit p-4 md:flex md:flex-col md:justify-between gap-4`,
-        status && "duration-500"
-      )}
+    <motion.nav
+      className="transition-all duration-300 sticky hidden h-screen border-r p-4 md:flex md:flex-col md:justify-between gap-4"
+      initial={{ width: "fit-content" }}
+      animate={{ width: isOpen ? "auto" : "fit-content" }}
+      transition={{ duration: 0.5 }}
     >
       <ArrowLeft
         className={cn(
@@ -39,20 +61,29 @@ export default function Sidebar() {
         )}
         onClick={handleToggle}
       />
-      <div
+      <motion.div
         role="avatar-container"
         className="w-full flex flex-col gap-1 justify-center items-center"
+        initial="hidden"
+        animate={isMounted ? "visible" : "hidden"}
+        variants={profileVariants}
+        transition={{ duration: 0.5 }}
       >
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <p className="font-semibold text-sm">@shadcn</p>
-      </div>
+      </motion.div>
       <Separator />
       <TooltipProvider delayDuration={0}>
-        <ul className="h-full">
-          <li>
+        <motion.ul
+          className="h-full"
+          initial="hidden"
+          animate={isMounted ? "visible" : "hidden"}
+          variants={listVariants}
+        >
+          <motion.li variants={itemVariants}>
             <Tooltip>
               <TooltipTrigger>
                 <Link
@@ -64,24 +95,25 @@ export default function Sidebar() {
                   )}
                 >
                   <User />
-                  <span
-                    className={cn(
-                      "text-start",
-                      !isOpen && hiddenClasses,
-                      isOpen &&
-                        "inline-block left-12 text-base duration-200 w-[120px]"
-                    )}
+                  <motion.span
+                    className="text-start"
+                    initial={{ opacity: 0, width: 0 }}
+                    animate={{
+                      opacity: isOpen ? 1 : 0,
+                      width: isOpen ? "120px" : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
                   >
                     Profile
-                  </span>
+                  </motion.span>
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right" className={`${isOpen && "hidden"}`}>
                 <p>Profile</p>
               </TooltipContent>
             </Tooltip>
-          </li>
-          <li>
+          </motion.li>
+          <motion.li variants={itemVariants}>
             <Tooltip>
               <TooltipTrigger>
                 <Link
@@ -93,44 +125,53 @@ export default function Sidebar() {
                   )}
                 >
                   <ListTodo />
-                  <span
-                    className={cn(
-                      "text-start",
-                      !isOpen && hiddenClasses,
-                      isOpen &&
-                        "inline-block left-12 text-base duration-200 w-[120px]"
-                    )}
+                  <motion.span
+                    className="text-start"
+                    initial={{ opacity: 0, width: 0 }}
+                    animate={{
+                      opacity: isOpen ? 1 : 0,
+                      width: isOpen ? "120px" : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
                   >
                     Tasks
-                  </span>
+                  </motion.span>
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right" className={`${isOpen && "hidden"}`}>
                 <p>Tasks</p>
               </TooltipContent>
             </Tooltip>
-          </li>
-        </ul>
+          </motion.li>
+        </motion.ul>
       </TooltipProvider>
       <Separator />
-      <footer className="flex justify-center items-center">
+      <motion.footer
+        className="flex justify-center items-center"
+        initial="hidden"
+        animate={isMounted ? "visible" : "hidden"}
+        variants={logoutVariants}
+        transition={{ duration: 0.5, delay: 0.6 }}
+      >
         <Button
           className={cn(
             "text-base duration-200 group relative flex h-12 justify-start gap-2"
           )}
         >
           <LogOut />
-          <span
-            className={cn(
-              "text-start",
-              !isOpen && hiddenClasses,
-              isOpen && "inline-block left-12 text-base duration-200 w-[60px] "
-            )}
+          <motion.span
+            className="text-start"
+            initial={{ opacity: 0, width: 0 }}
+            animate={{
+              opacity: isOpen ? 1 : 0,
+              width: isOpen ? "60px" : 0,
+            }}
+            transition={{ duration: 0.3 }}
           >
             Logout
-          </span>
+          </motion.span>
         </Button>
-      </footer>
-    </nav>
+      </motion.footer>
+    </motion.nav>
   );
 }
