@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <div className="flex flex-row items-stretch h-full w-full">
       <Sidebar />
-      <div className="w-full -z-10">
+      <div className="w-full">
         <AnimatePresence mode="wait">
           <motion.div
             key={pathname}

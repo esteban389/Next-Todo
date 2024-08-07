@@ -54,16 +54,20 @@ export default function Sidebar() {
       animate={{ width: isOpen ? "auto" : "fit-content" }}
       transition={{ duration: 0.5 }}
     >
-      <Button
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
         className={cn(
-          "absolute -right-3 z-20 top-20 p-2 cursor-pointer rounded-full border bg-background text-3xl text-foreground",
+          "absolute -right-4 top-20 cursor-pointer rounded-full border bg-background text-3xl text-foreground",
           !isOpen && "rotate-180"
         )}
         onClick={handleToggle}
-        variant={"ghost"}
       >
-        <ArrowLeft />
-      </Button>
+        <Button className="p-2 rounded-full" variant={"ghost"}>
+          <ArrowLeft />
+        </Button>
+      </motion.div>
       <motion.div
         role="avatar-container"
         className="w-full flex flex-col gap-1 justify-center items-center"
