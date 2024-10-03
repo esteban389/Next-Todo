@@ -49,15 +49,14 @@ export default function Sidebar() {
   }, []);
   return (
     <motion.nav
-      className="transition-all duration-300 sticky hidden h-screen border-r p-4 md:flex md:flex-col md:justify-between gap-4"
+      className="transition-all duration-300 sticky mr-4 hidden h-screen border-r p-4 md:flex md:flex-col md:justify-between gap-4"
       initial={{ width: "fit-content" }}
       animate={{ width: isOpen ? "auto" : "fit-content" }}
-      transition={{ duration: 0.5 }}
     >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
         className={cn(
           "absolute -right-4 top-20 cursor-pointer rounded-full border bg-background text-3xl text-foreground",
           !isOpen && "rotate-180"
@@ -74,7 +73,7 @@ export default function Sidebar() {
         initial="hidden"
         animate={isMounted ? "visible" : "hidden"}
         variants={profileVariants}
-        transition={{ duration: 0.5 }}
+        transition={{ ease: "easeOut", duration: 0.2 }}
       >
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -109,7 +108,7 @@ export default function Sidebar() {
                       opacity: isOpen ? 1 : 0,
                       width: isOpen ? "120px" : 0,
                     }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                   >
                     Profile
                   </motion.span>
@@ -139,7 +138,7 @@ export default function Sidebar() {
                       opacity: isOpen ? 1 : 0,
                       width: isOpen ? "120px" : 0,
                     }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2, easing: "easeOut" }}
                   >
                     Tasks
                   </motion.span>
@@ -158,7 +157,7 @@ export default function Sidebar() {
         initial="hidden"
         animate={isMounted ? "visible" : "hidden"}
         variants={logoutVariants}
-        transition={{ duration: 0.5, delay: 0.6 }}
+        transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
       >
         <Button
           className={cn(
@@ -173,7 +172,7 @@ export default function Sidebar() {
               opacity: isOpen ? 1 : 0,
               width: isOpen ? "60px" : 0,
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
             Logout
           </motion.span>
