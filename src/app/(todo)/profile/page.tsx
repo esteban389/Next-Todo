@@ -5,19 +5,19 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import ConfirmDelete from "./components/confirm-delete";
 import React from "react";
-import { Toaster } from "@/components/ui/sonner";
 const ProfilePage = (): React.ReactElement => {
   return (
-    <main className="w-full p-12 flex flex-col">
+    <main className="w-full p-12 flex flex-col bg-secondary">
       <ScrollArea className="w-full h-screen">
         <div className="w-fit mb-4">
           <h1 className="text-2xl font-bold tracking-tight">Profile</h1>
           <Separator className="h-[2px] bg-foreground" />
         </div>
-        <UpdateProfileInfo />
-        <UpdatePassword />
-        <DeleteAccount />
-        <Toaster />
+        <div className="h-fit pb-24">
+          <UpdateProfileInfo />
+          <UpdatePassword />
+          <DeleteAccount />
+        </div>
       </ScrollArea>
     </main>
   );
@@ -25,7 +25,7 @@ const ProfilePage = (): React.ReactElement => {
 
 const UpdateProfileInfo = (): React.ReactElement => {
   return (
-    <section className="flex flex-col gap-2 py-8 px-12 rounded-lg border border-solid shadow-md">
+    <section className="flex flex-col gap-2 py-8 px-12 rounded-lg border border-solid shadow-md bg-background">
       <h1 className="text-lg font-bold tracking-tight">Profile information</h1>
       <p className="text-sm text-muted-foreground">
         Update your profile information here.
@@ -48,7 +48,7 @@ const UpdateProfileInfo = (): React.ReactElement => {
 };
 const UpdatePassword = (): React.ReactElement => {
   return (
-    <section className="mt-8 flex flex-col gap-2 py-8 px-12 rounded-lg border border-solid shadow-md">
+    <section className="mt-8 flex flex-col gap-2 py-8 px-12 rounded-lg border border-solid shadow-md bg-background">
       <h1 className="text-lg font-bold tracking-tight">Update your password</h1>
       <p className="text-sm text-muted-foreground">
         Make sure to use a long and random password to be safe.
@@ -79,7 +79,7 @@ const UpdatePassword = (): React.ReactElement => {
 };
 const DeleteAccount = (): React.ReactElement => {
   return (
-    <section className="mt-8 flex flex-col gap-2 py-8 px-12 rounded-lg border border-solid shadow-md">
+    <section className="mt-8 flex flex-col gap-2 py-8 px-12 rounded-lg border border-solid shadow-md bg-background">
       <h1 className="text-lg font-bold tracking-tight">Delete account</h1>
       <p className="text-sm text-muted-foreground">
         Once the account is deleted, all information will be erased.
