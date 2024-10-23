@@ -1,3 +1,4 @@
+"use client"
 import Tasks from "@/app/(todo)/tasks/components/task";
 import { Separator } from "@/components/ui/separator";
 import CreateTask from "@/app/(todo)/tasks/components/createTask";
@@ -8,20 +9,21 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { useState } from "react";
 const tasks: Task[] = [
   {
     id: "1",
     name: "Test Task",
     status: true,
-    description: "This is a test task",
+    description: "This is a very simple test task",
     categories: [{ category: "Test Category", color: "blue" }],
-    due_date: "Sat Apr 27 2024 00:00:00 GMT-0500",
+    due_date: "Sat July 27 2024 00:00:00 GMT-0500",
   },
   {
     id: "2",
     name: "Test Task 2",
     status: false,
-    description: "This is a test task",
+    description: "This is a test task holding multiple categories",
     categories: [
       { category: "Test Category", color: "blue" },
       { category: "Test Category", color: "blue" },
@@ -60,6 +62,8 @@ const tasks: Task[] = [
 ];
 
 const TaskPage = (): React.ReactElement => {
+  const [selectedTask, setSelectedTask] = useState<Task>(tasks[0]);
+  const onSelectTask = (task: Task) => setSelectedTask(task);
   return (
     <main className="flex flex-row w-full">
       <ResizablePanelGroup direction="horizontal">
@@ -73,7 +77,7 @@ const TaskPage = (): React.ReactElement => {
               <Separator className="mt-4" />
               <CreateTask />
               <Separator className="mb-4" />
-              <Tasks tasks={tasks} />
+              <Tasks tasks={tasks} onSelectTask={onSelectTask} />
             </section>
             <ScrollBar className="w-[4px]" />
           </ScrollArea>
@@ -86,7 +90,7 @@ const TaskPage = (): React.ReactElement => {
           minSize={25}
           className="md:flex hidden sticky"
         >
-          <EditTask task={tasks[0]} />
+          <EditTask task={selectedTask} key={selectedTask.id} />
         </ResizablePanel>
       </ResizablePanelGroup>
     </main>

@@ -11,6 +11,7 @@ import { Plus } from "lucide-react";
 
 const EditTask = ({ task }: EditTaskProps): React.ReactElement => {
   const date = new Date(task.due_date);
+  const [name, setName] = React.useState(task.name);
   return (
     <form className="p-12 h-full flex flex-col justify-between w-full">
       <fieldset className="flex flex-col gap-4">
@@ -20,11 +21,11 @@ const EditTask = ({ task }: EditTaskProps): React.ReactElement => {
         <Separator className="mt-1" />
         <div>
           <Label>Name:</Label>
-          <Input type="text" placeholder={task.name} />
+          <Input type="text" placeholder={"Name of the task"} value={name} onChange={e => setName(e.target.value)} />
         </div>
         <div>
           <Label>Description:</Label>
-          <Textarea rows={4} placeholder={task.description} />
+          <Textarea rows={4} placeholder={task.description} value={task.description} />
         </div>
         <div>
           <Label>Due Date:</Label>

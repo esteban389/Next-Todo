@@ -13,6 +13,7 @@ type Task = {
 type TaskProps = {
   children?: never;
   tasks: Task[];
+  onSelectTask: (task: Task) => void;
 };
 type EditTaskProps = {
   task: Task;

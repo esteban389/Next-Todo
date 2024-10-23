@@ -9,7 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-const Tasks = ({ tasks }: TaskProps): React.ReactElement => {
+const Tasks = ({ tasks, onSelectTask }: TaskProps): React.ReactElement => {
   return (
     <Accordion
       type="single"
@@ -17,7 +17,7 @@ const Tasks = ({ tasks }: TaskProps): React.ReactElement => {
       className="rounded-md border px-4 py-3 w-full text-sm space-y-2"
     >
       {tasks.map((task) => (
-        <AccordionItem value={task.id} key={task.id}>
+        <AccordionItem value={task.id} key={task.id} onClick={()=>onSelectTask(task)}>
           <div className="flex flex-row gap-2 items-center w-full basis-full">
             <Checkbox id={`${task.id}`} defaultChecked={task.status} />
             <AccordionTrigger className="w-full">
