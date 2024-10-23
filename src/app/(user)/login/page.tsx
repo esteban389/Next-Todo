@@ -9,7 +9,7 @@ const LoginPage = (): React.ReactElement => {
     <main
       className="flex w-full h-full items-center justify-center px-4"
       style={{
-        background: "radial-gradient(#e0e0e0 1px, transparent 1px);",
+        background: "radial-gradient(#e0e0e0 1px, transparent 1px)",
         backgroundSize: "20px 20px",
       }}
     >
