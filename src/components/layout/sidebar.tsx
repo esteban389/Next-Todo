@@ -40,18 +40,14 @@ const profileVariants = {
 export default function Sidebar() {
   const [isOpen, setSidebar] = useState(false);
   const path = usePathname();
-  const [isMounted, setIsMounted] = useState(false);
   const handleToggle = () => {
     setSidebar(!isOpen);
   };
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
   return (
     <motion.nav
       className="transition-all duration-300 sticky mr-4 hidden h-screen border-r p-4 md:flex md:flex-col md:justify-between gap-4"
       initial={{ width: "fit-content" }}
-      animate={{ width: isOpen ? "auto" : "fit-content" }}
+      animate={{ width: "auto" }}
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -71,7 +67,7 @@ export default function Sidebar() {
         role="avatar-container"
         className="w-full flex flex-col gap-1 justify-center items-center"
         initial="hidden"
-        animate={isMounted ? "visible" : "hidden"}
+        animate={"visible"}
         variants={profileVariants}
         transition={{ ease: "easeOut", duration: 0.2 }}
       >
@@ -86,7 +82,7 @@ export default function Sidebar() {
         <motion.ul
           className="h-full"
           initial="hidden"
-          animate={isMounted ? "visible" : "hidden"}
+          animate={"visible"}
           variants={listVariants}
         >
           <motion.li variants={itemVariants}>
@@ -155,7 +151,7 @@ export default function Sidebar() {
       <motion.footer
         className="flex justify-center items-center"
         initial="hidden"
-        animate={isMounted ? "visible" : "hidden"}
+        animate={"visible"}
         variants={logoutVariants}
         transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
       >
